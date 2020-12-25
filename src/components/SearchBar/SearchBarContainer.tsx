@@ -1,12 +1,20 @@
 import React, {Component} from 'react';
 import SearchBar from "./SearchBar";
 import {connect} from "react-redux";
-import {getTags} from "../../redux/searchbar-reducer";
+import {getTags, setIsGrouped, setServerErrorMessage, setTagToSearchField} from "../../redux/searchbar-reducer";
+import {clearPictures} from "../../redux/gallery-reducer";
 import {AppStateType} from "../../redux/redux-store";
 
-type PropsType = {
-    getTags: any,
-    isFetching: boolean
+export type PropsType = {
+    getTags: (preparedTags: string[]) => void,
+    isFetching: boolean,
+    setIsGrouped: (groupedStatus: boolean) => void,
+    grouped: boolean,
+    serverErrorMessage: string,
+    setServerErrorMessage: (serverErrorMessage: string) => void,
+    clearPictures: () => void,
+    searchFieldValue: string,
+    setTagToSearchField: (pictureTag: string) => void
 }
 
 
@@ -22,7 +30,10 @@ class SearchBarContainer extends Component<PropsType> {
     }
 }
 
-const mapStateToProps = (state:  AppStateType) => ({
-    isFetching: state.searchBarPage.isFetching
+const mapStateToProps = (state: AppStateType) => ({
+    isFetching: state.searchBarPage.isFetching,
+    grouped: state.searchBarPage.grouped,
+    serverErrorMessage: state.searchBarPage.serverErrorMessage,
+    searchFieldValue: state.searchBarPage.searchFieldValue
 })
-export default connect(mapStateToProps, {getTags})(SearchBarContainer)
+export default connect(mapStateToProps, {getTags, setIsGrouped, setServerErrorMessage, clearPictures, setTagToSearchField})(SearchBarContainer)

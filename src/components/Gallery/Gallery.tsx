@@ -1,12 +1,22 @@
 import React from 'react';
+import {PicturesType} from "../../redux/gallery-reducer";
+import GaleryItem from './GalleryItem';
 
-const Gallery = () => {
+type PropsType = {
+    pictures: PicturesType[],
+    setTagToSearchField: (pictureTag: string) => void
+}
+
+const Gallery = ({pictures, setTagToSearchField}: PropsType) => {
     return (
         <div className="gallery-wrapper">
-            Галерея
+            {pictures.map((picture, index) => <GaleryItem pictureUrl={picture.url}
+                                                          pictureTag={picture.tag}
+                                                          key={index}
+                                                          setTagToSearchField={setTagToSearchField}/>)}
         </div>
-)
-    ;
+    )
+        ;
 }
 
 export default Gallery;

@@ -1,4 +1,4 @@
-import * as axios from "axios"
+import axios from "axios"
 
 const  API_KEY = "gTJAO48YcpmrADUyo4opy4ES4g7iDBxx"
 
@@ -7,7 +7,7 @@ let instance = axios.create({
 })
 
 export const imagesAPI = {
-    getImage(tag) {
+    getImage(tag: string) {
         return instance.get(`${tag}`)
     }
 
