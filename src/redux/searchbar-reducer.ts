@@ -104,12 +104,18 @@ export const setServerErrorMessage = (message: string): SetServerErrorMessageAct
 export const getTags = (tags: string[]) => async (dispatch: any) => {
     dispatch(setIsFetching(true))
     for (const tag of tags) {
+
         try {
-            let response = await imagesAPI.getImage(tag)
-            if (response.data.data.length === 0) {
-                dispatch(setServerErrorMessage("По тегу ничего не найдено"))
-            } else {
+            if (tags.length === 1 && tags[0] === "delay"){
+                let response = await imagesAPI.getRandomImage()
                 dispatch(setPicture(response.data.data.image_url, tag))
+            } else {
+                let response = await imagesAPI.getImage(tag)
+                if (response.data.data.length === 0) {
+                    dispatch(setServerErrorMessage("По тегу ничего не найдено"))
+                } else {
+                    dispatch(setPicture(response.data.data.image_url, tag))
+                }
             }
 
 

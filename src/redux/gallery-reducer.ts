@@ -1,5 +1,3 @@
-import {type} from "os";
-
 const SET_PICTURE = "SET_PICTURE"
 const CLEAR_PICTURES = "CLEAR_PICTURES"
 
@@ -9,11 +7,13 @@ export type PicturesType = {
 }
 
 type InitialStateType = {
-    pictures: PicturesType[]
+    pictures: PicturesType[],
+    groups: string[]
 }
 
 const initialState: InitialStateType = {
-    pictures: []
+    pictures: [],
+    groups: []
 }
 
 const galleryReducer = (state = initialState, action: any): InitialStateType => {
@@ -21,12 +21,15 @@ const galleryReducer = (state = initialState, action: any): InitialStateType => 
         case SET_PICTURE:
             return {
                 ...state,
-                pictures: [...state.pictures, {url: action.url, tag: action.tag}]
+                pictures: [...state.pictures, {url: action.url, tag: action.tag}],
+                groups: [...state.groups].includes(action.tag) ? [...state.groups] : [...state.groups, action.tag]
+                //groups: [...state.groups, action.tag]
             }
         case CLEAR_PICTURES:
             return {
                 ...state,
-                pictures: []
+                pictures: [],
+                groups: []
             }
         default:
             return {
@@ -43,7 +46,6 @@ type SetPictureActionType = {
     tag: string
 }
 export const setPicture = (url: string, tag: string): SetPictureActionType => {
-
     return {
         type: SET_PICTURE,
         url,

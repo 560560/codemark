@@ -6,9 +6,11 @@ import { PicturesType } from '../../redux/gallery-reducer';
 import { setTagToSearchField } from '../../redux/searchbar-reducer';
 
 
-type PropsType = {
+export type PropsType = {
     pictures: PicturesType[],
-    setTagToSearchField: (pictureTag: string) => void
+    groups: string[]
+    setTagToSearchField: (pictureTag: string) => void,
+    grouped: boolean
 }
 
 class GalleryContainer extends Component<PropsType> {
@@ -24,7 +26,9 @@ class GalleryContainer extends Component<PropsType> {
 }
 
 const mapStateToProps = (state: AppStateType) => ({
-    pictures: state.galleryPage.pictures
+    pictures: state.galleryPage.pictures,
+    groups: state.galleryPage.groups,
+    grouped: state.searchBarPage.grouped
 })
 
 export default connect (mapStateToProps, {setTagToSearchField})(GalleryContainer)
