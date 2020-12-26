@@ -8,9 +8,8 @@ const Gallery = ({pictures, setTagToSearchField, groups, grouped}: PropsType) =>
     return (
         <div className="gallery-wrapper">
             {grouped
-                ? <GalleryGroups pictures={pictures} groups={groups} setTagToSearchField={setTagToSearchField}/>
-                : pictures.map((picture, index) => <GaleryItem pictureUrl={picture.url}
-                                                               pictureTag={picture.tag}
+                ? <GalleryGroups pictures={pictures} groups={groups} setTagToSearchField={setTagToSearchField}/> //если включена группировка - рендерится этот компонент
+                : pictures.map((picture, index) => <GaleryItem picture={picture}//если группировка выключена - рендерится этот компонент
                                                                key={index}
                                                                setTagToSearchField={setTagToSearchField}/>)}
         </div>
