@@ -16,7 +16,6 @@ body
   grid-row-gap: 30px
 
 
-
   .search-bar-wrapper
     grid-area: s
 
@@ -30,7 +29,7 @@ body
       display: flex
       justify-content: center
       align-items: center
-      width: 580px
+      max-width: 580px
 
       .modal
         font-family: "Raleway", "sans-serif"
@@ -147,13 +146,38 @@ body
           max-height: 100%
 
 
-
           border-radius: 7px
 
 
+@media (max-width: 800px)
+  .app-wrapper
+    width: 100vw
+    grid-template-rows: 220px 1fr
+
+    .search-bar-wrapper
+
+      .container
+        width: 90vw
+        display: grid
 
 
+        grid-template-columns: 1fr
+        .input-field, .button
+          margin-right: 0
+          margin-bottom: 15px
+
+    .gallery-wrapper
+      grid-area: g
+      display: grid
+      grid-template-columns: 1fr
+      width: 100%
+
+      .gallery-groups-wrapper
+        padding: 5px
+        .gallery-group
+          .group-pictures
+            justify-content: center
 
 
-
-
+      .gallery-item-wrapper
+        justify-self: center
