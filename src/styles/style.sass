@@ -149,7 +149,9 @@ body
           border-radius: 7px
 
 
-@media (max-width: 800px)
+@media (max-width: 500px)
+  body
+    overflow-x: hidden
   .app-wrapper
     width: 100vw
     grid-template-rows: 220px 1fr
@@ -159,6 +161,10 @@ body
       .container
         width: 90vw
         display: grid
+        .modal
+          left: 5vw
+          width: 80vw
+
 
 
         grid-template-columns: 1fr
